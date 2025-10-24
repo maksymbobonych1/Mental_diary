@@ -1,0 +1,179 @@
+.mainContent {
+  padding: 30px 5%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.profileInfoSection {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 40px;
+}
+
+.avatarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 150px;
+}
+
+.avatarPlaceholder {
+  width: 130px;
+  height: 130px;
+  background-color: #ddd;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  color: #888;
+  margin-bottom: 15px;
+}
+
+.changeAvatarButton {
+  background: none;
+  border: 1px solid #aaa;
+  color: #555;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.changeAvatarButton:hover {
+  background-color: #f0f0f0;
+}
+
+.detailsContainer {
+  flex-grow: 1;
+}
+
+.dataTitle {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #5d48a0;
+}
+
+.dataField {
+  display: flex;
+  margin-bottom: 10px;
+  font-size: 16px;
+  padding: 5px 0;
+}
+
+.dataLabel {
+  font-weight: 500;
+  color: #666;
+  width: 100px;
+}
+
+.dataValue {
+  font-weight: 700;
+  color: #333;
+}
+
+.securityBlock {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.securityTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.changePasswordButton {
+  background-color: #9775e0;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.changePasswordButton:hover {
+  background-color: #7b5fd2;
+}
+
+.journalTitle {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #5d48a0;
+}
+
+.journalListContainer {
+  max-height: 450px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.journalEntry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  background-color: #fcfcfc;
+  transition: background-color 0.2s;
+}
+
+.journalEntry:hover {
+  background-color: #f0f0ff;
+}
+
+.entryDetails {
+  display: flex;
+  gap: 20px;
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+.entryDate {
+  font-weight: 600;
+  min-width: 100px;
+  color: #555;
+}
+
+.entryText {
+  color: #333;
+}
+
+.entryMetadata {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.entryTag {
+  background-color: #e0e0ff;
+  color: #5d48a0;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  min-width: 60px;
+  text-align: center;
+}
+
+.entryMood {
+  font-size: 24px;
+}
+
+.scrollEndPlaceholder {
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  color: #888;
+}

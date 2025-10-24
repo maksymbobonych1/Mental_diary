@@ -1,0 +1,90 @@
+.mainContent {
+  padding: 30px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.graphPlaceholder {
+  background-color: #e0e0ff;
+  border-radius: 8px;
+  padding: 20px;
+  height: 250px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.moodGraph {
+  width: 90%;
+  height: 90%;
+}
+
+.sliderContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.sliderArrow {
+  background-color: #e0e0ff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  color: #5d48a0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sliderArrow:hover {
+  background-color: #d0d0ff;
+}
+
+.tipsCards,
+.filmCards {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.tipCard {
+  min-width: 300px;
+  background-color: #ffe8e8;
+  border: 1px solid #f0cccc;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filmCard {
+  min-width: 250px;
+  height: 350px;
+  background-color: #c9c3ff;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #5d48a0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,125 @@
+.mainContent {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.entrySection {
+  flex: 2;
+  max-width: 650px;
+}
+
+.moodSelector {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.moodButton {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 28px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+}
+
+.moodButton:hover,
+.moodButton:focus {
+  border-color: #9775e0;
+  background-color: #f0f0ff;
+}
+
+.descriptionInput {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: none;
+  font-size: 16px;
+  margin-bottom: 20px;
+  background-color: #fcfcfc;
+}
+
+.tagSelector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.tagButton {
+  padding: 8px 15px;
+  background-color: #e0e0ff;
+  color: #5d48a0;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.tagButton:hover {
+  background-color: #d0d0ff;
+}
+
+.saveButton {
+  padding: 12px 30px;
+  background-color: #9775e0;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.saveButton:hover {
+  background-color: #8367d4;
+}
+
+.calendarSection {
+  flex: 1;
+  max-width: 400px;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 1px;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.calendarCell {
+  background-color: #ffffff;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.calendarDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 5px;
+}
