@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  background-color: #f7f9fc;
+  color: #333;
+}
+
+.title {
+  font-size: 8rem;
+  color: #5d48a0;
+  margin: 0;
+  font-weight: 700;
+}
+
+.message {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #4a4a4a;
+}
+
+.description {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #6c757d;
+}
+
+.homeLink {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #9d78e3;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.homeLink:hover {
+  background-color: #5d48a0;
+}

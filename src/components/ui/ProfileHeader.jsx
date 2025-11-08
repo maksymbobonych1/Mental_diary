@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import styles from "../../styles/Header.module.css";
 
-const ProfileHeader = () => {
+const ProfileHeader = ({ onLogout }) => {
   return (
     <header className={styles.header}>
       {/* Логотип веде на Головну MainPage */}
@@ -25,12 +26,20 @@ const ProfileHeader = () => {
           Головна сторінка
         </Link>
         {/* Кнопка Вихід */}
-        <Link to="/" className={`${styles.navButton} ${styles.logoutButton}`}>
+        <Link
+          to="/"
+          className={`${styles.navButton} ${styles.logoutButton}`}
+          onClick={onLogout}
+        >
           Вихід
         </Link>
       </nav>
     </header>
   );
+};
+
+ProfileHeader.propTypes = {
+  onLogout: PropTypes.func.isRequired,
 };
 
 export default ProfileHeader;

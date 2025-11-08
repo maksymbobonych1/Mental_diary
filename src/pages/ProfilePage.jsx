@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ProfileHeader from "../components/ui/ProfileHeader";
 import Footer from "../components/ui/Footer";
 import styles from "../styles/ProfilePage.module.css";
@@ -6,7 +7,7 @@ import styles from "../styles/ProfilePage.module.css";
 const mockEntries = [
   {
     date: "2025.03.01",
-    mood: "⭐️",
+    mood: "🙂",
     text: "Сьогодні було все класно",
     tag: "Робота",
   },
@@ -42,19 +43,19 @@ const mockEntries = [
   },
 ];
 
-const ProfilePage = () => {
+const ProfilePage = ({ onLogout }) => {
   const handleAvatarChange = () =>
     alert("Імітація завантаження нової аватарки");
   const handleChangePassword = () => alert("Імітація зміни пароля");
 
   return (
     <div className={styles.container}>
-      <ProfileHeader />
+      <ProfileHeader onLogout={onLogout} />
 
       <main className={styles.mainContent}>
         <section className={styles.profileInfoSection}>
           <div className={styles.avatarContainer}>
-            <div className={styles.avatarPlaceholder}></div>
+            <div className={styles.avatarPlaceholder}>👤</div>
             <button
               className={styles.changeAvatarButton}
               onClick={handleAvatarChange}
@@ -115,6 +116,10 @@ const ProfilePage = () => {
       <Footer />
     </div>
   );
+};
+
+ProfilePage.propTypes = {
+  onLogout: PropTypes.func.isRequired,
 };
 
 export default ProfilePage;
