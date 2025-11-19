@@ -1,3 +1,9 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .mainContent {
   flex-grow: 1;
   display: flex;
@@ -27,8 +33,8 @@
 }
 
 .moodButton {
-  background: none;
-  border: 1px solid #ccc;
+  background-color: #fcfcfc;
+  border: 1px solid #e0e0e0;
   border-radius: 50%;
   width: 45px;
   height: 45px;
@@ -36,13 +42,33 @@
   cursor: pointer;
   transition:
     background-color 0.2s,
-    border-color 0.2s;
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
 }
 
-.moodButton:hover,
-.moodButton:focus {
+.moodButton:hover {
+  background-color: #d0d0ff;
   border-color: #9775e0;
-  background-color: #f0f0ff;
+}
+
+.moodButton:focus {
+  background-color: #e0e0ff;
+  border-color: #5d48a0;
+  outline: none;
+}
+
+.moodButtonActive {
+  background-color: #e0e0ff;
+  border-color: #5d48a0;
+  border-width: 2px;
+  box-shadow: 0 0 5px rgba(93, 72, 160, 0.4);
+  transform: scale(1.05);
+}
+
+.moodButtonActive:hover {
+  background-color: #e0e0ff;
+  border-color: #5d48a0;
 }
 
 .descriptionInput {
@@ -70,11 +96,24 @@
   border-radius: 20px;
   cursor: pointer;
   font-weight: 500;
-  transition: background-color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .tagButton:hover {
   background-color: #d0d0ff;
+}
+
+.tagButtonActive {
+  background-color: #5d48a0 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.tagButtonActive:hover {
+  background-color: #5d48a0;
+  color: #ffffff;
 }
 
 .saveButton {
@@ -91,6 +130,13 @@
 
 .saveButton:hover {
   background-color: #8367d4;
+}
+
+.calendarControls {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .calendarSection {
@@ -115,6 +161,23 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border 0.2s;
+  height: 40px;
+}
+
+.calendarCell:hover {
+  background-color: #f0f0ff;
+}
+
+.calendarSelect:focus {
+  border-color: #9775e0;
+}
+
+.calendarCellActive {
+  border: 1px solid #9775e0;
 }
 
 .calendarDot {
@@ -125,8 +188,68 @@
   bottom: 5px;
 }
 
-.container {
+.calendarDayHeader {
+  background-color: #e0e0ff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 0;
+  color: #5d48a0;
+}
+
+.calendarCellSelected {
+  background-color: #9775e0;
+  color: white;
+  border-color: #5d48a0;
+  font-weight: 700;
+}
+
+.calendarSelect {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0ff;
+  color: #5d48a0;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.currentEntryDetails {
+  margin-top: 40px;
+  padding: 20px;
+  border-top: 1px solid #eee;
+}
+
+.detailsBlock {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.detailsTitle {
+  font-size: 1.1rem;
+  color: #5d48a0;
+  margin-bottom: 10px;
+}
+
+.detailsText {
+  font-style: italic;
+  color: #4a4a4a;
+  margin-bottom: 10px;
+}
+
+.detailsFooter {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.detailsTag {
+  background-color: #c9c3ff;
+  padding: 3px 8px;
+  border-radius: 12px;
+  color: #333;
 }
