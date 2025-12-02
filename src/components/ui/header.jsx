@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/Header.module.css";
 
-// HomePage
 const Header = () => {
   return (
     <header className={styles.header}>
@@ -13,12 +12,6 @@ const Header = () => {
         </div>
       </Link>
       <nav className={styles.nav}>
-        <Link
-          to="/login"
-          className={`${styles.navButton} ${styles.registerButton}`}
-        >
-          Register
-        </Link>
         <Link
           to="/login"
           className={`${styles.navButton} ${styles.loginButton}`}

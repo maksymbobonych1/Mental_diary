@@ -4,6 +4,7 @@ import ReviewHeader from "../components/ui/ReviewHeader";
 import Footer from "../components/ui/Footer";
 import styles from "../styles/MainPage.module.css";
 import { usePostEntry, useDiaryEntries } from "../api/apiHooks";
+import { toLocalISODate } from "../../src/features/DateUtils";
 
 const moods = ["😔", "🙁", "😐", "🙂", "😊"];
 const tags = ["Робота", "Сон", "Стосунки", "Навчання", "Спорт"];
@@ -11,19 +12,24 @@ const CURRENT_YEAR = new Date().getFullYear();
 const YEARS = [CURRENT_YEAR - 1, CURRENT_YEAR, CURRENT_YEAR + 1];
 
 const MONTHS = [
-  { name: "Січень", days: 31, num: "01" },
-  { name: "Лютий", days: 28, num: "02" },
-  { name: "Березень", days: 31, num: "03" },
-  { name: "Квітень", days: 30, num: "04" },
-  { name: "Травень", days: 31, num: "05" },
-  { name: "Червень", days: 30, num: "06" },
-  { name: "Липень", days: 31, num: "07" },
-  { name: "Серпень", days: 31, num: "08" },
-  { name: "Вересень", days: 30, num: "09" },
-  { name: "Жовтень", days: 31, num: "10" },
-  { name: "Листопад", days: 30, num: "11" },
-  { name: "Грудень", days: 31, num: "12" },
+  { name: "Січень", num: "01" },
+  { name: "Лютий", num: "02" },
+  { name: "Березень", num: "03" },
+  { name: "Квітень", num: "04" },
+  { name: "Травень", num: "05" },
+  { name: "Червень", num: "06" },
+  { name: "Липень", num: "07" },
+  { name: "Серпень", num: "08" },
+  { name: "Вересень", num: "09" },
+  { name: "Жовтень", num: "10" },
+  { name: "Листопад", num: "11" },
+  { name: "Грудень", num: "12" },
 ];
+
+const getDaysInMonth = (year, monthNum) => {
+  const monthIndex = parseInt(monthNum, 10) - 1;
+  return new Date(year, monthIndex + 1, 0).getDate();
+};
 
 const CalendarCell = ({ dateString, entryData, isSelected, onClick }) => {
   const hasEntry = entryData.id;
@@ -98,23 +104,20 @@ const MainPage = () => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   const { isPosting, postEntry } = usePostEntry();
-  const { entries, isLoading: isEntriesLoading } = useDiaryEntries();
-
-  const currentMonthData =
-    MONTHS.find((m) => m.num === currentMonth) || MONTHS[0];
+  const { entries, isLoading: isEntriesLoading, refetch } = useDiaryEntries();
 
   const calendarDays = useMemo(() => {
-    const daysInMonth = currentMonthData.days;
+    const year = parseInt(currentYear, 10);
+    const daysInMonth = getDaysInMonth(year, currentMonth);
 
     const days = Array.from({ length: daysInMonth }, (_, i) => {
       const dayNum = i + 1;
       const dateString = `${currentYear}-${currentMonth}-${String(dayNum).padStart(2, "0")}`;
-
       const entry = entries.find((e) => e.date === dateString);
       return { dateString, entry: entry || {} };
     });
     return days;
-  }, [currentYear, currentMonth, entries, currentMonthData]);
+  }, [currentYear, currentMonth, entries]);
 
   const entriesForSelectedDate = entries.filter((e) => e.date === selectedDate);
 
@@ -124,19 +127,23 @@ const MainPage = () => {
       return;
     }
 
+    const todayDateString = toLocalISODate(new Date());
+
     const newEntry = {
       mood: mood,
       text: description,
       tag: selectedTags.join(", "),
+      date: todayDateString,
     };
 
     const result = await postEntry(newEntry);
     if (result.success) {
-      alert(
-        "Запис успішно збережено! Оновіть сторінку, щоб побачити його в календарі."
-      );
+      alert("Запис успішно збережено!");
       setDescription("");
       setSelectedTags([]);
+
+      refetch();
+      setSelectedDate(todayDateString);
     } else {
       alert("Помилка збереження запису.");
     }

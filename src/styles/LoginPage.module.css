@@ -1,14 +1,14 @@
 .outerContainer {
   min-height: 100vh;
-  background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
 }
 
 .authHeader {
-  background-color: #e0f8ff;
-  padding: 30px 0;
+  background-color: #2b455b;
+  padding: 15px 0;
   text-align: center;
-  border-bottom: 3px solid #b3e6ff;
-  margin-bottom: 50px;
+  border-bottom: 3px solid #1a2e3f;
 }
 
 .headerTitle {
@@ -18,61 +18,91 @@
 }
 
 .mainContent {
+  flex-grow: 1;
   display: flex;
   justify-content: center;
-  padding: 20px;
+  align-items: flex-start;
+  padding: 50px 20px;
 }
 
 .authForm {
   width: 100%;
   max-width: 450px;
-  background-color: white;
+  background-color: #2e2e2e;
   padding: 40px;
   border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  color: #f0f0f0;
 }
 
 .formTitle {
   font-size: 24px;
   font-weight: 600;
-  color: #333;
+  color: #f0f0f0;
   text-align: center;
   margin-bottom: 30px;
 }
 
 .subtitle {
   font-size: 14px;
-  color: #555;
+  color: #bdbdbd;
   margin-bottom: 5px;
 }
 
 .inputGroup {
   position: relative;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .inputField {
   width: 100%;
-  padding: 15px 15px;
-  background-color: #f8f0ff;
-  border: none;
+  padding: 15px 45px 15px 15px;
+  background-color: #3f3f3f;
+  border: 1px solid transparent;
   border-radius: 5px;
   font-size: 16px;
   outline: none;
-  transition: background-color 0.2s;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+  color: #e0e0e0;
 }
 
 .inputField::placeholder {
-  color: #888;
+  color: #a0a0a0;
 }
 
 .inputField:focus {
-  background-color: #f0e6ff;
+  background-color: #4a4a4a;
+  border-color: #5d48a0;
+}
+
+.togglePasswordButton {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.2rem;
+  z-index: 10;
+  color: #8a7bb8;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.togglePasswordButton:hover {
+  opacity: 1;
 }
 
 .submitButton {
   width: 100%;
   padding: 15px;
-  background-color: #c9c3ff;
+  background-color: #5d48a0;
   color: white;
   border: none;
   border-radius: 5px;
@@ -85,15 +115,7 @@
 }
 
 .submitButton:hover {
-  background-color: #a89fe8;
-}
-
-.switchText {
-  font-size: 14px;
-  color: #555;
-  text-align: center;
-  margin-top: 15px;
-  cursor: pointer;
+  background-color: #7b68b0;
 }
 
 .linksContainer {
@@ -101,17 +123,27 @@
   flex-direction: column;
   align-items: center;
   gap: 5px;
+  color: #bdbdbd;
+}
+
+.switchText {
+  font-size: 14px;
+  color: #bdbdbd;
+  text-align: center;
+  margin-top: 15px;
+  cursor: default;
 }
 
 .forgotPassword {
   font-size: 14px;
-  color: #555;
+  color: #bdbdbd;
   text-align: center;
-  cursor: pointer;
+  cursor: default;
 }
 
 .link {
-  color: #5d48a0;
+  color: #9370db;
   font-weight: 600;
   text-decoration: underline;
+  cursor: pointer;
 }
