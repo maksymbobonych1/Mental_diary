@@ -3,14 +3,21 @@ import PropTypes from "prop-types";
 import styles from "../../styles/LoginPage.module.css";
 import { useAuth } from "../../api/apiHooks";
 
-const LoginForm = ({ onLogin, navigate, setIsLoginView, setError }) => {
+const LoginForm = ({
+  onLogin,
+  navigate,
+  setIsLoginView,
+  setError,
+  testLogin,
+}) => {
   const [email, setEmail] = useState("test@mail.com");
   const [password, setPassword] = useState("12345");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [localError, setLocalError] = useState("");
 
-  const { login } = useAuth();
+  const { login: realLogin } = useAuth();
+  const login = testLogin || realLogin;
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +44,6 @@ const LoginForm = ({ onLogin, navigate, setIsLoginView, setError }) => {
   return (
     <form className={styles.authForm} onSubmit={handleFormSubmit}>
       <h2 className={styles.formTitle}>Увійти у свій акаунт</h2>
-
       {localError && (
         <p style={{ color: "red", textAlign: "center", marginBottom: "15px" }}>
           {localError}
@@ -55,7 +61,6 @@ const LoginForm = ({ onLogin, navigate, setIsLoginView, setError }) => {
           disabled={isSubmitting}
         />
       </div>
-
       <div className={styles.inputGroup}>
         <input
           className={styles.inputField}
@@ -103,6 +108,7 @@ LoginForm.propTypes = {
   navigate: PropTypes.func.isRequired,
   setIsLoginView: PropTypes.func.isRequired,
   setError: PropTypes.func,
+  testLogin: PropTypes.func,
 };
 
 export default LoginForm;
