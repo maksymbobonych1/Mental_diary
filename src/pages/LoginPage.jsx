@@ -2,19 +2,46 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import styles from "../styles/LoginPage.module.css";
+import { useAuth } from "../api/apiHooks";
 
 const LoginPage = ({ onLogin }) => {
   const [isLoginView, setIsLoginView] = useState(true);
+
+  const [email, setEmail] = useState("test@mail.com");
+  const [password, setPassword] = useState("12345");
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const action = isLoginView ? "Вхід" : "Реєстрація";
-    alert(`Імітація відправки форми: ${action}`);
+    setError("");
 
-    if (isLoginView) {
+    if (!isLoginView) {
+      alert(
+        "Імітація реєстрації. Для входу використовуйте test@mail.com та 12345"
+      );
+      return;
+    }
+
+    if (!email.trim() || !password.trim()) {
+      setError("Будь ласка, заповніть усі поля.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const result = await login(email, password);
+
+    setIsSubmitting(false);
+
+    if (result.success) {
       onLogin();
       navigate("/main");
+    } else {
+      setError(result.error);
     }
   };
 
@@ -22,12 +49,21 @@ const LoginPage = ({ onLogin }) => {
     <>
       <h2 className={styles.formTitle}>Увійти у свій акаунт</h2>
 
+      {error && (
+        <p style={{ color: "red", textAlign: "center", marginBottom: "15px" }}>
+          {error}
+        </p>
+      )}
+
       <div className={styles.inputGroup}>
         <input
           className={styles.inputField}
           type="email"
           placeholder="Електронна пошта"
           aria-label="Електронна пошта"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          disabled={isSubmitting}
         />
       </div>
       <div className={styles.inputGroup}>
@@ -36,11 +72,18 @@ const LoginPage = ({ onLogin }) => {
           type="password"
           placeholder="Пароль"
           aria-label="Пароль"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          disabled={isSubmitting}
         />
       </div>
 
-      <button className={styles.submitButton} type="submit">
-        Увійти
+      <button
+        className={styles.submitButton}
+        type="submit"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Вхід..." : "Увійти"}
       </button>
 
       <div className={styles.linksContainer}>
@@ -70,6 +113,7 @@ const LoginPage = ({ onLogin }) => {
           type="email"
           placeholder="Електронна пошта"
           aria-label="Електронна пошта"
+          autoComplete="email"
         />
       </div>
 
@@ -80,6 +124,7 @@ const LoginPage = ({ onLogin }) => {
           type="text"
           placeholder="Ім'я"
           aria-label="Ім'я"
+          autoComplete="given-name"
         />
       </div>
 
@@ -90,6 +135,7 @@ const LoginPage = ({ onLogin }) => {
           type="text"
           placeholder="Прізвище"
           aria-label="Прізвище"
+          autoComplete="family-name"
         />
       </div>
 
@@ -100,6 +146,7 @@ const LoginPage = ({ onLogin }) => {
           type="password"
           placeholder="Пароль"
           aria-label="Пароль"
+          autoComplete="new-password"
         />
       </div>
 
@@ -110,6 +157,7 @@ const LoginPage = ({ onLogin }) => {
           type="password"
           placeholder="Пароль"
           aria-label="Пароль знову"
+          autoComplete="new-password"
         />
       </div>
 
