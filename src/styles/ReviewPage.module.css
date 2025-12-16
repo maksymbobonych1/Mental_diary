@@ -13,26 +13,18 @@
   font-weight: 600;
   margin-top: 30px;
   margin-bottom: 15px;
-  color: #555;
+  color: #e0e0e0;
   text-align: center;
 }
 
 .graphPlaceholder {
-  background-color: #e0e0ff;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
-  padding: 20px;
-
   height: 250px;
-  margin-bottom: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 250px;
-  width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-
   padding: 15px 10px 5px 35px;
   overflow: visible;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .moodGraphSection {
@@ -88,15 +80,16 @@
   flex-basis: calc(33.333% - 13.333px);
   min-width: 250px;
   height: 120px;
-  background-color: #f0f0ff;
+  background-color: #2b3950;
+  border: 1px solid #3d4e66;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #333;
+  color: #e0e0e0;
   font-size: 1rem;
   line-height: 1.4;
   transition: transform 0.2s;
@@ -106,7 +99,8 @@
   flex-basis: calc(33.333% - 13.333px);
   min-width: 250px;
   height: 380px;
-  background-color: #c9c3ff;
+  background-color: #3d4e66;
+  border: 1px solid #2b3950;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   overflow: hidden;

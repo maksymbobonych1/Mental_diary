@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import ProfileHeader from "../components/ui/ProfileHeader";
 import Footer from "../components/ui/Footer";
 import styles from "../styles/ProfilePage.module.css";
-import { useProfile, useDiaryEntries, useUpdateProfile } from "../api/apiHooks";
+import {
+  useProfile,
+  useDiaryEntries,
+  useUpdateProfile,
+  useUploadAvatar,
+} from "../api/apiHooks";
 
 const ChangePasswordForm = ({ onUpdate, isUpdating, onCancel }) => {
   const [newPassword, setNewPassword] = useState("");
@@ -15,30 +20,31 @@ const ChangePasswordForm = ({ onUpdate, isUpdating, onCancel }) => {
     setError(null);
 
     if (newPassword !== confirmPassword) {
-      setError("Новий пароль і підтвердження не збігаються.");
+      setError("Паролі не збігаються.");
       return;
     }
-    if (newPassword.length < 6) {
-      setError("Пароль має містити мінімум 6 символів.");
+    if (newPassword.length < 5) {
+      setError("Пароль має містити мінімум 5 символів.");
       return;
     }
 
     try {
       await onUpdate({ newPassword });
+      setNewPassword("");
+      setConfirmPassword("");
       onCancel();
     } catch (err) {
-      setError(err.message || "Не вдалося оновити пароль. Спробуйте пізніше.");
+      setError(err.message || "Не вдалося оновити пароль.");
     }
   };
 
   return (
     <form className={styles.passwordForm} onSubmit={handleSubmit}>
-      {error && <p className={styles.formError}>{error}</p>}
-
+      {error && <p style={{ color: "red", fontSize: "0.9rem" }}>{error}</p>}
       <input
         className={styles.inputField}
         type="password"
-        placeholder="Новий пароль (мін. 6 символів)"
+        placeholder="Новий пароль"
         value={newPassword}
         onChange={(e) => setNewPassword(e.target.value)}
         disabled={isUpdating}
@@ -47,24 +53,25 @@ const ChangePasswordForm = ({ onUpdate, isUpdating, onCancel }) => {
       <input
         className={styles.inputField}
         type="password"
-        placeholder="Підтвердіть новий пароль"
+        placeholder="Підтвердіть пароль"
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
         disabled={isUpdating}
         required
       />
-      <div className={styles.formActions}>
+      <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
         <button
           type="submit"
+          className={styles.changePasswordButton}
           disabled={isUpdating}
-          className={styles.submitPasswordButton}
         >
-          {isUpdating ? "Оновлення..." : "Зберегти пароль"}
+          {isUpdating ? "Збереження..." : "Зберегти"}
         </button>
         <button
           type="button"
           onClick={onCancel}
-          className={styles.cancelButton}
+          className={styles.changeAvatarButton}
+          style={{ border: "1px solid #ccc", color: "#ccc" }}
         >
           Скасувати
         </button>
@@ -72,6 +79,7 @@ const ChangePasswordForm = ({ onUpdate, isUpdating, onCancel }) => {
     </form>
   );
 };
+
 ChangePasswordForm.propTypes = {
   onUpdate: PropTypes.func.isRequired,
   isUpdating: PropTypes.bool.isRequired,
@@ -79,23 +87,29 @@ ChangePasswordForm.propTypes = {
 };
 
 const ProfilePage = ({ onLogout }) => {
-  const { profile, isLoading: isProfileLoading } = useProfile();
+  const { profile, isLoading: isProfileLoading, refetch } = useProfile();
   const { entries, isLoading: isEntriesLoading } = useDiaryEntries();
   const { updateProfile, isUpdating } = useUpdateProfile();
+  const { uploadAvatar, isUploading } = useUploadAvatar();
 
   const [showPasswordForm, setShowPasswordForm] = useState(false);
+  const fileInputRef = useRef(null);
 
-  const handleAvatarChange = async () => {
-    alert("Імітація зміни аватарки. Виконуємо PATCH-запит...");
+  const handleAvatarButtonClick = () => {
+    fileInputRef.current.click();
+  };
 
-    const result = await updateProfile({ avatarUrl: "new/path/to/avatar.png" });
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const result = await uploadAvatar(file);
 
     if (result.success) {
-      alert(
-        "Аватарку оновлено! (В реальному проєкті потрібне перезавантаження даних)"
-      );
+      alert("Фото успішно оновлено!");
+      refetch();
     } else {
-      alert("Помилка оновлення аватарки.");
+      alert("Помилка завантаження: " + (result.error || "Невідома помилка"));
     }
   };
 
@@ -106,24 +120,31 @@ const ProfilePage = ({ onLogout }) => {
       alert("Пароль успішно змінено!");
       return Promise.resolve();
     } else {
+      alert("Помилка: " + result.error);
       return Promise.reject(new Error(result.error));
     }
   };
 
   if (isProfileLoading || isEntriesLoading) {
     return (
-      <h1 style={{ textAlign: "center", marginTop: "100px" }}>
-        Завантаження даних профілю...
+      <h1 style={{ textAlign: "center", marginTop: "100px", color: "#fff" }}>
+        Завантаження...
       </h1>
     );
   }
 
   if (!profile) {
     return (
-      <h1 style={{ textAlign: "center", marginTop: "100px" }}>
-        Помилка завантаження даних користувача.
+      <h1 style={{ textAlign: "center", marginTop: "100px", color: "#fff" }}>
+        Помилка завантаження даних.
       </h1>
     );
+  }
+
+  const backendUrl = "http://localhost:3001";
+  let displayAvatarUrl = profile.avatarUrl;
+  if (profile.avatarUrl && profile.avatarUrl.startsWith("/uploads/")) {
+    displayAvatarUrl = `${backendUrl}${profile.avatarUrl}`;
   }
 
   return (
@@ -134,22 +155,31 @@ const ProfilePage = ({ onLogout }) => {
         <section className={styles.profileInfoSection}>
           <div className={styles.avatarContainer}>
             <div className={styles.avatarPlaceholder}>
-              {profile.avatarUrl ? (
+              {displayAvatarUrl ? (
                 <img
-                  src={profile.avatarUrl}
-                  alt="Аватар користувача"
+                  src={displayAvatarUrl}
+                  alt="Аватар"
                   className={styles.avatarImage}
                 />
               ) : (
                 "👤"
               )}
             </div>
+
+            <input
+              type="file"
+              ref={fileInputRef}
+              style={{ display: "none" }}
+              accept="image/*"
+              onChange={handleFileChange}
+            />
+
             <button
               className={styles.changeAvatarButton}
-              onClick={handleAvatarChange}
-              disabled={isUpdating}
+              onClick={handleAvatarButtonClick}
+              disabled={isUploading}
             >
-              Змінити фото
+              {isUploading ? "Завантаження..." : "Змінити фото"}
             </button>
           </div>
 

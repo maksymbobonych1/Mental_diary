@@ -18,7 +18,7 @@
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 25px;
-  color: #333;
+  color: #e0e0e0;
 }
 
 .entrySection {
@@ -33,53 +33,48 @@
 }
 
 .moodButton {
-  background-color: #fcfcfc;
-  border: 1px solid #e0e0e0;
+  background-color: #2b3950;
+  border: 1px solid #3d4e66;
   border-radius: 50%;
   width: 45px;
   height: 45px;
   font-size: 28px;
   cursor: pointer;
-  transition:
-    background-color 0.2s,
-    border-color 0.2s,
-    box-shadow 0.2s,
-    transform 0.2s;
+  transition: all 0.2s;
 }
 
 .moodButton:hover {
-  background-color: #d0d0ff;
+  background-color: #3d4e66;
   border-color: #9775e0;
 }
 
-.moodButton:focus {
-  background-color: #e0e0ff;
-  border-color: #5d48a0;
-  outline: none;
-}
-
 .moodButtonActive {
-  background-color: #e0e0ff;
-  border-color: #5d48a0;
+  background-color: #2b3950;
+  border-color: #9775e0;
   border-width: 2px;
-  box-shadow: 0 0 5px rgba(93, 72, 160, 0.4);
-  transform: scale(1.05);
-}
-
-.moodButtonActive:hover {
-  background-color: #e0e0ff;
-  border-color: #5d48a0;
+  box-shadow: 0 0 10px rgba(151, 117, 224, 0.4);
+  transform: scale(1.1);
 }
 
 .descriptionInput {
   width: 100%;
   padding: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid #3d4e66;
   border-radius: 8px;
   resize: none;
   font-size: 16px;
   margin-bottom: 20px;
-  background-color: #fcfcfc;
+  background-color: #1f2c41;
+  color: #e0e0e0;
+  outline: none;
+}
+
+.descriptionInput::placeholder {
+  color: #a0a0a0;
+}
+
+.descriptionInput:focus {
+  border-color: #9775e0;
 }
 
 .tagSelector {
@@ -90,30 +85,24 @@
 
 .tagButton {
   padding: 8px 15px;
-  background-color: #e0e0ff;
-  color: #5d48a0;
-  border: none;
+  background-color: #2b3950;
+  color: #c0c0c0;
+  border: 1px solid #3d4e66;
   border-radius: 20px;
   cursor: pointer;
   font-weight: 500;
-  transition:
-    background-color 0.2s,
-    color 0.2s;
+  transition: all 0.2s;
 }
 
 .tagButton:hover {
-  background-color: #d0d0ff;
+  background-color: #3d4e66;
+  color: #ffffff;
 }
 
 .tagButtonActive {
   background-color: #5d48a0 !important;
   color: #ffffff !important;
-  font-weight: 600;
-}
-
-.tagButtonActive:hover {
-  background-color: #5d48a0;
-  color: #ffffff;
+  border-color: #5d48a0;
 }
 
 .saveButton {
@@ -132,11 +121,50 @@
   background-color: #8367d4;
 }
 
-.calendarControls {
+.currentEntryDetails {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #3d4e66;
+}
+
+.detailsBlock {
+  background-color: #1f2c41;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #3d4e66;
+  color: #e0e0e0;
+}
+
+.detailsTitle {
+  font-size: 1.1rem;
+  color: #9775e0;
+  margin-bottom: 10px;
+}
+
+.detailsText {
+  font-style: italic;
+  color: #d0d0d0;
+  margin-bottom: 15px;
+}
+
+.detailsMessage {
+  color: #a0a0a0;
+  text-align: center;
+  font-style: italic;
+}
+
+.detailsFooter {
   display: flex;
-  gap: 15px;
-  align-items: center;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-top: 15px;
+}
+
+.detailsTag {
+  background-color: #3d4e66;
+  padding: 3px 10px;
+  border-radius: 12px;
+  color: #ffffff;
 }
 
 .calendarSection {
@@ -144,112 +172,74 @@
   max-width: 400px;
 }
 
+.calendarControls {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendarSelect {
+  padding: 8px 12px;
+  border: 1px solid #3d4e66;
+  border-radius: 5px;
+  background-color: #1f2c41;
+  color: #e0e0e0;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+}
+
 .calendarGrid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-gap: 1px;
-  border: 1px solid #ddd;
-  background-color: #eee;
+  gap: 5px;
+  background-color: #1f2c41;
+  padding: 10px;
   border-radius: 8px;
-  overflow: hidden;
+  border: 1px solid #3d4e66;
+}
+
+.calendarDayHeader {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 0;
+  color: #a0a0a0;
 }
 
 .calendarCell {
-  background-color: #ffffff;
+  background-color: #2b3950;
   height: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   cursor: pointer;
-  transition:
-    background-color 0.2s,
-    border 0.2s;
-  height: 40px;
+  border-radius: 6px;
+  color: #e0e0e0;
+  transition: background-color 0.2s;
 }
 
 .calendarCell:hover {
-  background-color: #f0f0ff;
-}
-
-.calendarSelect:focus {
-  border-color: #9775e0;
+  background-color: #3d4e66;
 }
 
 .calendarCellActive {
   border: 1px solid #9775e0;
 }
 
+.calendarCellSelected {
+  background-color: #5d48a0 !important;
+  color: #ffffff;
+  border-color: #9775e0;
+}
+
 .calendarDot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   position: absolute;
-  bottom: 5px;
-}
-
-.calendarDayHeader {
-  background-color: #e0e0ff;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 5px 0;
-  color: #5d48a0;
-}
-
-.calendarCellSelected {
+  bottom: 4px;
   background-color: #9775e0;
-  color: white;
-  border-color: #5d48a0;
-  font-weight: 700;
-}
-
-.calendarSelect {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f0f0ff;
-  color: #5d48a0;
-  font-weight: 500;
-  cursor: pointer;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.currentEntryDetails {
-  margin-top: 40px;
-  padding: 20px;
-  border-top: 1px solid #eee;
-}
-
-.detailsBlock {
-  background-color: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #eee;
-}
-
-.detailsTitle {
-  font-size: 1.1rem;
-  color: #5d48a0;
-  margin-bottom: 10px;
-}
-
-.detailsText {
-  font-style: italic;
-  color: #4a4a4a;
-  margin-bottom: 10px;
-}
-
-.detailsFooter {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-}
-
-.detailsTag {
-  background-color: #c9c3ff;
-  padding: 3px 8px;
-  border-radius: 12px;
-  color: #333;
 }

@@ -1,7 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .mainContent {
   padding: 30px 5%;
   max-width: 900px;
   margin: 0 auto;
+  flex-grow: 1;
+  color: #e0e0e0;
 }
 
 .profileInfoSection {
@@ -9,7 +17,7 @@
   gap: 50px;
   align-items: flex-start;
   padding-bottom: 40px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #3d4e66;
   margin-bottom: 40px;
 }
 
@@ -19,83 +27,66 @@
   align-items: center;
   min-width: 150px;
 }
-
 .avatarPlaceholder {
   width: 130px;
   height: 130px;
-  background-color: #ddd;
+  background-color: #3d4e66;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 60px;
-  color: #888;
+  color: #9775e0;
   margin-bottom: 15px;
+  overflow: hidden;
 }
-
-.changeAvatarButton {
-  background: none;
-  border: 1px solid #aaa;
-  color: #555;
-  padding: 8px 15px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.changeAvatarButton:hover {
-  background-color: #f0f0f0;
-}
-
 .avatarImage {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
 }
-
-.detailsContainer {
-  flex-grow: 1;
+.changeAvatarButton {
+  background: none;
+  border: 1px solid #5d48a0;
+  color: #c0c0c0;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.changeAvatarButton:hover {
+  background-color: #3d4e66;
+  color: #ffffff;
 }
 
 .dataTitle {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 20px;
-  color: #5d48a0;
+  color: #9775e0;
 }
-
-.dataField {
-  display: flex;
-  margin-bottom: 10px;
-  font-size: 16px;
-  padding: 5px 0;
-}
-
 .dataLabel {
   font-weight: 500;
-  color: #666;
+  color: #a0a0a0;
   width: 100px;
 }
-
 .dataValue {
   font-weight: 700;
-  color: #333;
+  color: #ffffff;
 }
 
 .securityBlock {
   margin-top: 30px;
   padding-top: 20px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #3d4e66;
 }
-
 .securityTitle {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 15px;
-  color: #555;
+  color: #c0c0c0;
 }
-
 .changePasswordButton {
   background-color: #9775e0;
   color: white;
@@ -106,135 +97,55 @@
   cursor: pointer;
   transition: background-color 0.2s;
 }
-
 .changePasswordButton:hover {
-  background-color: #7b5fd2;
+  background-color: #8367d4;
 }
 
 .journalTitle {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 20px;
-  color: #5d48a0;
+  color: #9775e0;
 }
-
 .journalListContainer {
   max-height: 450px;
   overflow-y: auto;
-  border: 1px solid #ddd;
+  border: 1px solid #3d4e66;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  background-color: #1f2c41;
 }
-
 .journalEntry {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  border-bottom: 1px solid #eee;
-  background-color: #fcfcfc;
+  border-bottom: 1px solid #3d4e66;
+  background-color: #1f2c41;
+  color: #e0e0e0;
   transition: background-color 0.2s;
 }
-
+.journalEntry:last-child {
+  border-bottom: none;
+}
 .journalEntry:hover {
-  background-color: #f0f0ff;
+  background-color: #2b3950;
 }
-
-.entryDetails {
-  display: flex;
-  gap: 20px;
-  font-size: 16px;
-  flex-grow: 1;
-}
-
 .entryDate {
   font-weight: 600;
   min-width: 100px;
-  color: #555;
+  color: #a0a0a0;
 }
-
-.entryText {
-  color: #333;
-}
-
-.entryMetadata {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
 .entryTag {
-  background-color: #e0e0ff;
-  color: #5d48a0;
+  background-color: #3d4e66;
+  color: #ffffff;
   padding: 4px 8px;
   border-radius: 12px;
   font-size: 12px;
   font-weight: 500;
-  min-width: 60px;
-  text-align: center;
 }
-
-.entryMood {
-  font-size: 24px;
-}
-
 .scrollEndPlaceholder {
   text-align: center;
   padding: 15px;
-  font-size: 14px;
-  color: #888;
-}
-
-.passwordForm {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 15px 0;
-  border-radius: 8px;
-  margin-top: 10px;
-  max-width: 350px;
-}
-
-.inputField {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  transition: border-color 0.2s;
-}
-
-.inputField:focus {
-  border-color: #5d48a0;
-  outline: none;
-}
-
-.formActions {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.submitPasswordButton {
-  padding: 10px 15px;
-  background-color: #5d48a0;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.cancelButton {
-  padding: 10px 15px;
-  background-color: #e0e0e0;
-  color: #333;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-.formError {
-  color: #e53935;
-  font-size: 0.9rem;
-  margin-bottom: 5px;
+  color: #666;
+  font-style: italic;
 }

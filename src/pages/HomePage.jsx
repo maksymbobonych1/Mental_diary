@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/ui/Header";
+import Header from "../components/ui/header";
 import Footer from "../components/ui/Footer";
 import FeatureCard from "../components/ui/FeatureCard";
 import styles from "../styles/HomePage.module.css";
