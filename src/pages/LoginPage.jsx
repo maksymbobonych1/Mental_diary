@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import styles from "../styles/LoginPage.module.css";
 
-const LoginPage = () => {
+const LoginPage = ({ onLogin }) => {
   const [isLoginView, setIsLoginView] = useState(true);
   const navigate = useNavigate();
 
@@ -11,8 +12,8 @@ const LoginPage = () => {
     const action = isLoginView ? "Вхід" : "Реєстрація";
     alert(`Імітація відправки форми: ${action}`);
 
-    // Перенаправляємо на MainPage
     if (isLoginView) {
+      onLogin();
       navigate("/main");
     }
   };
@@ -137,6 +138,10 @@ const LoginPage = () => {
       </main>
     </div>
   );
+};
+
+LoginPage.propTypes = {
+  onLogin: PropTypes.func.isRequired,
 };
 
 export default LoginPage;
