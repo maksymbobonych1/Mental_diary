@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "prepare": "husky install",
-    "server": "json-server --watch db.json --port 3001"
+    "server": "json-server --watch db.json --port 3001",
+    "tests": "npx cypress open"
   },
   "dependencies": {
     "prop-types": "^15.8.1",
@@ -20,11 +21,14 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.28.4",
     "@babel/preset-react": "^7.27.1",
+    "@cypress/code-coverage": "^3.14.7",
+    "@cypress/react": "^9.0.1",
     "@eslint/js": "^9.38.0",
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.4",
-    "cypress": "^15.5.0",
+    "cypress": "^15.7.1",
     "eslint": "^9.38.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
@@ -35,7 +39,8 @@
     "husky": "^8.0.0",
     "lint-staged": "^16.2.4",
     "prettier": "^3.6.2",
-    "vite": "^7.1.7"
+    "vite": "^7.1.7",
+    "vite-plugin-istanbul": "^7.2.1"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,css,json,html}": [
